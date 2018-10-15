@@ -1,0 +1,1321 @@
+focus_tree = {
+	id = Frankish_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = FRK
+		}
+	}
+
+focus = {
+		id = FRK_rebels
+		icon = GFX_goal_generic_military_deal
+		
+				prerequisite = { focus = FRK_imperialways }
+x = -3
+		y = 1
+		cost = 25
+				relative_position_id = FRK_imperialways
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		FRK = {
+			add_political_power = 100
+			transfer_state = 14
+		}
+		available = {
+				controls_state = 14
+			}
+	}
+	}
+
+
+	focus = {
+		id = FRK_rebels
+		icon = GFX_goal_generic_major_alliance
+		
+				prerequisite = { focus = FRK_hope }
+x = 3
+		y = 1
+		cost = 25
+				relative_position_id = FRK_hope
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		FRK = {
+			add_political_power = 100
+			transfer_state = 14
+		}
+		available = {
+				controls_state = 14
+			}
+	}
+	}
+	focus = {
+		id = FRK_lastbastion
+		icon = GFX_goal_generic_major_alliance
+		x = 8
+		y = 0
+		cost = 25
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		FRK = {
+			add_political_power = 100
+		}
+	}
+	}
+
+focus = {
+		id = FRK_hope
+		icon = GFX_goal_support_democracy
+		prerequisite = { focus = FRK_lastbastion }
+				relative_position_id = FRK_lastbastion
+						mutually_exclusive = { focus = FRK_imperialways }
+		x = 3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			FRK = {
+				add_ideas = democratic_influence
+			}
+			}
+		}
+
+	focus = {
+		id = FRK_imperialways
+		icon = GFX_goal_support_fascism
+		prerequisite = { focus = FRK_lastbastion }
+		mutually_exclusive = { focus = FRK_hope }
+		relative_position_id = FRK_lastbastion
+		x = -3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			FRK = {
+				add_ideas = communist_influence
+			}
+			}
+		}
+
+focus = {
+		id = FRK_allies
+		icon = GFX_goal_generic_allies_build_infantry
+	prerequisite = { focus = FRK_hope }
+		x = 0
+		y = 1
+		relative_position_id = FRK_hope
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = volunteer_corps_focus
+		}
+	}
+
+focus = {
+		id = FRK_BURthreat
+		icon = GFX_goal_generic_construct_military
+		prerequisite = { focus = FRK_allies }
+		x = -2
+		y = 1
+		relative_position_id = FRK_allies
+		cost = 10
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			#add_ideas = todt
+			show_ideas_tooltip = todt
+			50 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					custom_effect_tooltip = GER_west_wall_forts
+					hidden_effect = {
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 11720
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 9717
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 6775
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 755
+							instant_build = yes
+						}
+							add_building_construction = {
+							type = bunker
+							level = 3
+							province = 6792
+							instant_build = yes
+						}
+							add_building_construction = {
+							type = bunker
+							level = 3
+							province = 3598
+							instant_build = yes
+						}
+							add_building_construction = {
+							type = bunker
+							level = 3
+							province = 625
+							instant_build = yes
+						}
+							add_building_construction = {
+							type = bunker
+							level = 3
+							province = 11869
+							instant_build = yes
+						}	
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 669
+							instant_build = yes
+						}	
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 3671
+							instant_build = yes
+						}	
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 9478
+							instant_build = yes
+						}	
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 11613
+							instant_build = yes
+						}	
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 9867
+							instant_build = yes
+						}	
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 11616
+							instant_build = yes
+						}
+					}
+				}
+			}
+}
+}
+	focus = {
+		id = FRK_friends
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = { focus = FRK_allies }
+		x = 4
+		y = 1
+		relative_position_id = FRK_allies
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = ideological_fanaticism_focus
+			set_rule = {
+				can_create_factions = yes
+			}
+			hidden_effect = {
+				set_rule = { can_use_kamikaze_pilots = yes }
+			}
+			custom_effect_tooltip = kamikaze_focus_tooltip
+		}
+	}
+focus = {
+		id = FRK_convince
+		icon = GFX_goal_generic_propaganda
+		prerequisite = { focus = FRK_friends }
+		x = 4
+		y = 2
+		relative_position_id = FRK_allies
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = indoctrination_focus
+			add_political_power = 100
+		}
+	}
+
+focus = {
+		id = FRK_roaddddd
+		icon = GFX_goal_generic_construct_civilian
+		prerequisite = { focus = FRK_allies }
+		x = 2
+		y = 1
+		relative_position_id = FRK_allies
+		cost = 10
+		ai_will_do = {
+			factor = 9
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = GER_autarky
+				bonus = 0.5
+				uses = 2
+				technology = excavation1
+				technology = excavation2
+				technology = excavation3
+				technology = excavation4
+				technology = excavation5
+			}
+			add_ideas = GER_autarky_idea
+		}
+	}
+
+	focus = {
+		id = FRK_newera
+		icon = GFX_goal_generic_major_alliance
+		x = -1
+		y = 1
+		cost = 25
+	prerequisite = { focus = FRK_imperialways }
+		available_if_capitulated = yes
+		relative_position_id = FRK_imperialways
+
+		completion_reward = {
+		FRK = {
+			kill_country_leader = no
+					create_country_leader = {
+						name = "Roman Govenors"
+						desc = "POLITICS_VICTOR_EMMANUEL_III_DESC"
+						picture = "royal.dds"
+						expire = "1965.1.1"
+						ideology = stalinism
+		}
+	}
+	}
+	}
+focus = {
+		id = FRK_visdefense
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = FRK_imperialways }
+		x = 1
+		y = 1
+		relative_position_id = FRK_imperialways
+		cost = 10
+		ai_will_do = {
+			factor = 8
+		}
+	
+		completion_reward = {
+			#add_ideas = todt
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = todt
+			50 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 11720
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 9717
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 6775
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 755
+							instant_build = yes
+						}
+							add_building_construction = {
+							type = bunker
+							level = 3
+							province = 6792
+							instant_build = yes
+						}
+							add_building_construction = {
+							type = bunker
+							level = 3
+							province = 3598
+							instant_build = yes
+						}
+							add_building_construction = {
+							type = bunker
+							level = 3
+							province = 625
+							instant_build = yes
+						}
+							add_building_construction = {
+							type = bunker
+							level = 3
+							province = 11869
+							instant_build = yes
+						}	
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 669
+							instant_build = yes
+						}	
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 3671
+							instant_build = yes
+						}	
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 9478
+							instant_build = yes
+						}	
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 11613
+							instant_build = yes
+						}	
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 9867
+							instant_build = yes
+						}	
+						add_building_construction = {
+							type = bunker
+							level = 3
+							province = 11616
+							instant_build = yes
+						}
+					}
+				}
+			}
+			}
+
+
+focus = {
+		id = FRK_antigermanic
+		icon = GFX_goal_generic_propaganda
+		prerequisite = { focus = FRK_allies }
+		available = { 
+			OR = { 
+				threat > 0.75 
+				has_defensive_war = yes 
+			}
+		}
+
+		continue_if_invalid = yes
+		
+		x = 0
+		y = 1
+		relative_position_id = FRK_allies
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = why_we_fight_focus
+			custom_effect_tooltip = why_we_fight_effect
+			hidden_effect = {
+				if = {
+					limit = { NOT = { has_idea = neutrality_idea } }
+					set_rule = { can_create_factions = yes }
+				}			
+			}
+		}
+	}
+
+focus = {
+		id = FRK_republican
+		icon = GFX_goal_generic_military_deal
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = { focus = FRK_visdefense }
+		prerequisite = { focus = FRK_newera }
+relative_position_id = FRK_visdefense
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 120
+			create_faction = "FRK_roman_faction"
+			
+	}
+}
+
+
+	focus = {
+		id = FRK_claiming
+		icon = GFX_goal_generic_major_alliance
+		x = -2
+		y = 1
+		cost = 10
+		prerequisite = { focus = FRK_newera }
+relative_position_id = FRK_newera
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		FRK = {
+			add_political_power = 100
+		}
+	}
+	}
+
+
+focus = {
+		id = FRK_visigone
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = FRK_republican focus = FRK_BURthreat }
+
+		relative_position_id = FRK_claiming
+		available = {
+			NOT = { is_in_faction_with = VIS }
+			NOT = { has_war_with = VIS }
+			FRK = { NOT = { is_puppet_of = VIS } }
+			country_exists = VIS
+		}
+		will_lead_to_war_with = VIS
+		x = 5
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = VIS
+				generator = { 175 } # belgrade
+			}
+		}
+
+	}
+
+	focus = {
+		id = FRK_badboy
+		icon = GFX_goal_generic_major_alliance
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = { focus = FRK_visigone }
+relative_position_id = FRK_visigone
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		FRK = {
+			add_political_power = -1000
+		}
+	}
+	}
+
+focus = {
+		id = FRK_Burrrr
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = FRK_claiming }
+
+		relative_position_id = FRK_claiming
+		available = {
+			NOT = { is_in_faction_with = BKD }
+			NOT = { has_war_with = BKD }
+			VIS = { NOT = { is_puppet_of = BKD } }
+			country_exists = BKD
+		}
+		will_lead_to_war_with = BKD
+		x = -2
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = BKD
+				generator = { 20 } # belgrade
+			}
+		}
+
+	}
+focus = {
+		id = FRK_convert
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = FRK_antigermanic}
+		relative_position_id = FRK_antigermanic
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.25
+		}
+		completion_reward = {
+		BKD = {
+			add_opinion_modifier = { target = BKD modifier = ita_diplomacy_focus }
+				add_ideas = democratic_influence
+		}
+}
+		available = {
+			country_exists = BKD
+			NOT = {
+				has_war_with = BKD
+			}
+		}
+		
+		}
+
+focus = {
+		id = FRK_ogkill
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = FRK_claiming }
+
+		relative_position_id = FRK_claiming
+		available = {
+			NOT = { is_in_faction_with = OGK }
+			NOT = { has_war_with = OGK }
+			VIS = { NOT = { is_puppet_of = OGK } }
+			country_exists = OGK
+		}
+		will_lead_to_war_with = OGK
+		x = 2
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = OGK
+				generator = { 2 } # belgrade
+			}
+		}
+
+	}
+	focus = {
+		id = FRK_morepp
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = FRK_visdefense }
+		available = {
+		}
+		x = 1
+		y = 1
+		relative_position_id = FRK_visdefense
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = political_commissars_focus
+			if = {
+				limit = { has_government = fascism }
+				add_popularity = {
+					ideology = fascism
+					popularity = 0.2
+				}
+			}
+			if = {
+				limit = { has_government = communism }
+				add_popularity = {
+					ideology = communism
+					popularity = 0.2
+				}
+			}
+			add_political_power = 200
+		}
+	}
+
+
+	focus = {
+		id = FRK_slot
+		icon = GFX_focus_research
+		prerequisite = { focus = FRK_badboy focus = FRK_convert }
+		x = 2
+		y = 1
+		relative_position_id = FRK_badboy
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = FRK_rebuild
+		icon = GFX_goal_generic_defence
+		available = {
+		}
+		x = 24
+		y = 1
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+focus = {
+		id = FRK_build
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = FRK_rebuild }
+		x = 1
+		y = 1
+		relative_position_id = FRK_rebuild
+		cost = 10
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 2
+		}
+
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = construction_effort_tt
+				all_owned_state = {
+					free_building_slots = {
+						building = industrial_complex
+						size < 2
+						include_locked = yes
+					}
+				}
+			}
+		}
+
+		complete_tooltip = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = industrial_complex
+										size > 1
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+focus = {
+		id = FRK_industry
+		icon = GFX_goal_generic_production
+		x = -1
+		y = 1
+		cost = 10
+prerequisite = { focus = FRK_rebuild }
+		relative_position_id = FRK_rebuild
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 0.5
+				uses = 1
+				category = industry
+			}
+		}
+
+		ai_will_do = {
+			factor = 3
+				}				
+			}
+
+focus = {
+		id = FRK_guns
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = FRK_industry }
+		x = 0
+		y = 1
+		relative_position_id = FRK_industry
+		cost = 10
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 2			
+		}
+
+		complete_tooltip = {
+			add_extra_state_shared_building_slots = 1 
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = arms_factory
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+focus = {
+		id = FRK_roads
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = FRK_build }
+		x = 0
+		y = 1
+		relative_position_id = FRK_build
+		cost = 10
+
+		available_if_capitulated = yes
+
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = infrastructure_effort_tt
+				all_owned_state = {			
+					free_building_slots = {
+						building = infrastructure
+						size < 1
+					}
+				}
+			}
+		}
+
+		complete_tooltip = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 0
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = infrastructure
+										size > 0
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = infrastructure
+										size > 1
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+focus = {
+		id = FRK_bigguns
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = FRK_roads }
+		prerequisite = { focus = FRK_guns }
+		x = 1
+		y = 1
+		relative_position_id = FRK_guns
+		cost = 10
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 2
+		}
+
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = production_effort_tt
+				all_owned_state = {
+					free_building_slots = {
+						building = arms_factory
+						size < 1
+						include_locked = yes
+					}					
+				}
+			}
+		}
+
+		complete_tooltip = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}		
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = arms_factory
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+##################military
+focus = {
+		id = FRK_armyup
+		icon = GFX_focus_generic_military_mission
+		available = {
+		}
+		x = 19
+		y = 1
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+
+focus = {
+		id = FRK_waterguys
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		prerequisite = { focus = FRK_armyup }
+		
+		x = -1
+		y = 1
+		relative_position_id = FRK_armyup
+		cost = 10
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				all_owned_state = {
+					OR = {
+						is_coastal = no
+						dockyard < 1
+					}
+				}
+			}
+		}
+		}
+focus = {
+	id = FRK_cruze
+		icon = GFX_goal_generic_navy_cruiser
+		x = -1
+		y = 1
+		relative_position_id = FRK_waterguys
+		cost = 10
+prerequisite = { focus = FRK_waterguys }
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				all_owned_state = {
+					OR = {
+						is_coastal = no
+						dockyard < 1
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = cr_bonus
+				bonus = 0.5
+				ahead_reduction = 1
+				uses = 1
+				technology = improved_light_cruiser
+				technology = advanced_light_cruiser
+				technology = improved_heavy_cruiser
+				technology = advanced_heavy_cruiser
+			}
+		}
+	}
+
+
+
+
+focus = {
+		id = FRK_subsub
+		icon = GFX_focus_generic_support_the_left_right
+		prerequisite = { focus = FRK_cruze }
+		x = 0
+		y = 1
+		relative_position_id = FRK_cruze
+		cost = 10
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				all_owned_state = {
+					OR = {
+						is_coastal = no
+						dockyard < 1
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ss_bonus
+				bonus = 0.5
+				ahead_reduction = 1
+				uses = 1
+				technology = early_submarine
+				technology = basic_submarine
+				technology = improved_submarine
+				technology = advanced_submarine
+			}
+		}
+	}
+
+focus = {
+		id = FRK_betterguns
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = FRK_armyup }
+		x = 1
+		y = 1
+		relative_position_id = FRK_armyup
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_artillery_bonus
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+				category = artillery
+			}
+		}
+	}
+
+focus = {
+		id = FRK_vroom_vroom
+		icon = GFX_goal_generic_army_motorized
+		prerequisite = { focus = FRK_betterguns }
+		bypass = { has_tech = motorised_infantry }
+		x = 1
+		y = 1
+		relative_position_id = FRK_betterguns
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = motorized_bonus
+				bonus = 0.75
+				technology = motorised_infantry
+			}
+		}
+	}
+
+	focus = {
+		id = FRK_docdrain
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = FRK_vroom_vroom }
+		x = 0
+		y = 1
+		relative_position_id = FRK_vroom_vroom
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 5
+			add_tech_bonus = {
+				name = land_doc_bonus
+				bonus = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+
+focus = {
+		id = FRK_tanks
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = FRK_docdrain }
+		x = -1
+		y = 1
+		relative_position_id = FRK_docdrain
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = armor_bonus
+				bonus = 0.5
+				uses = 2
+				category = armor
+			}
+		}
+	}
+
+focus = {
+		id = FRK_flyfly
+		icon = GFX_goal_generic_build_airforce
+		x = 1
+		y = 1
+		cost = 10
+prerequisite = { focus = FRK_subsub }
+		relative_position_id = FRK_subsub
+
+		available_if_capitulated = yes
+
+
+		complete_tooltip = {
+			air_experience = 25
+			if = { limit = { has_country_flag = aviation_effort_AB }
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}			
+			add_tech_bonus = {
+				name = air_doc_bonus
+				bonus = 0.5
+				uses = 1
+				category = air_doctrine
+			}			
+		}
+
+		completion_reward = {
+			air_experience = 25
+
+			if = {
+				limit = {
+					capital_scope = {
+						NOT = {
+							free_building_slots = {
+								building = air_base
+								size > 1
+							}
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+					ROOT = { set_country_flag = aviation_effort_AB }
+				}
+			}
+			if = {
+				limit = {
+					capital_scope = {
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+				}
+				capital_scope = {
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+					ROOT = { set_country_flag = aviation_effort_AB }
+				}
+			}
+			add_tech_bonus = {
+				name = air_doc_bonus
+				bonus = 0.5
+				uses = 1
+				category = air_doctrine
+			}
+			add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 0.5
+				uses = 2
+				technology = early_fighter
+				technology = fighter1
+				technology = fighter2
+				technology = fighter3
+				technology = heavy_fighter1
+				technology = heavy_fighter2
+				technology = heavy_fighter3
+			}
+		}
+	}
+
+
+
+
+}

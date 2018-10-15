@@ -1,0 +1,744 @@
+focus_tree = {
+	id = byz_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = ERE
+		}
+	}
+
+	focus = {
+		id = ERE_crummy
+		icon = GFX_goal_generic_military_sphere
+		x = 6
+		y = 1
+		cost = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		ERE = {
+			add_political_power = -100
+		}
+	}
+	}
+focus = {
+		id = ERE_hope
+		icon = GFX_goal_support_fascism
+		prerequisite = { focus = ERE_crummy }
+		mutually_exclusive = { focus = ERE_nomore }
+		relative_position_id = ERE_crummy
+		x = -3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			ERE = {
+				add_ideas = communist_influence
+			}
+			}
+		}
+focus = {
+		id = ERE_nomore
+		icon = GFX_goal_generic_secret_weapon
+		prerequisite = { focus = ERE_crummy }
+		mutually_exclusive = { focus = ERE_hope }
+		relative_position_id = ERE_crummy
+		x = 3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			ERE = {
+	add_ideas = fascist_influence
+			}
+			}
+		}
+
+	focus = {
+		id = ERE_cry
+		icon = GFX_goal_generic_military_sphere
+		x = -2
+		y = 3
+		cost = 5
+		relative_position_id = ERE_hope
+		available_if_capitulated = yes
+		prerequisite = { focus = ERE_don }
+		completion_reward = {
+		ERE = {
+			add_political_power = -300
+		}
+	}
+	}
+
+	focus = {
+		id = ERE_bkd
+		icon = GFX_goal_generic_improve_relations
+		x = -1
+		y = 1
+		cost = 5
+		relative_position_id = ERE_cry
+		available_if_capitulated = yes
+		prerequisite = { focus = ERE_cry }
+		completion_reward = {
+		ERE = {
+			add_political_power = -300
+			BKD = {
+					add_ideas = fascist_influence
+				
+				}
+
+		}
+	}
+	}
+	focus = {
+		id = ERE_rkd
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = ERE_cry }
+				relative_position_id = ERE_cry
+		available = {
+			NOT = { is_in_faction_with = RKD }
+			NOT = { has_war_with = RKD }
+			YUG = { NOT = { is_puppet_of = RKD } }
+			country_exists = RKD
+		}
+		will_lead_to_war_with = RKD
+		x = 1
+		y = 1
+		cost = 20
+		ai_will_do = {
+			factor = 10
+		}	
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = RKD
+				generator = { 449 } # belgrade
+			}
+		}
+	}
+
+	focus = {
+		id = ERE_fortification_effort
+		icon = GFX_goal_generic_construct_military
+		prerequisite = { focus = ERE_don }
+		x = -5
+		y = 3
+		relative_position_id = ERE_hope
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}	
+		completion_reward = {
+			341 = {
+				hidden_effect = {
+					add_building_construction = {
+						type = bunker
+						level = 10
+						province = 9833
+						instant_build = yes
+					}
+					}
+					}
+47 = {
+					add_building_construction = {
+						type = bunker
+						level = 10
+						province = 4109
+						instant_build = yes
+					}
+				
+				}
+			}
+
+		}
+	focus = {
+		id = ERE_civ
+		icon = GFX_goal_generic_military_sphere
+		x = 0
+		y = 1
+		cost = 15
+				prerequisite = { focus = ERE_hope}
+				relative_position_id = ERE_hope
+		available_if_capitulated = yes
+available = {
+					has_government = communism
+			}
+		completion_reward = {
+		ERE = {
+			add_political_power = -100
+							ERE = {
+				start_civil_war = {
+				ideology = fascism
+				size = 0.6
+			}
+			}
+		}
+	}
+	}
+	focus = {
+		id = ERE_helpoth
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = ERE_fortification_effort }
+		x = 0
+		y = 1
+		relative_position_id = ERE_fortification_effort
+		cost = 10
+
+		available_if_capitulated = yes
+available = {
+					has_government = communism
+			}
+		completion_reward = {
+			add_ideas = foreign_expeditions_focus
+
+		}
+	}
+
+	focus = {
+		id = ERE_don
+		icon = GFX_goal_generic_national_unity
+		x = 0
+		y = 1
+		cost = 5
+		relative_position_id = ERE_civ
+		available_if_capitulated = yes
+		available = {
+			NOT = { is_in_faction_with = D01 }
+			NOT = { has_war_with = D01 }
+			YUG = { NOT = { is_puppet_of = D01 } }
+		}
+
+		prerequisite = { focus = ERE_civ }
+		completion_reward = {
+		ERE = {
+			add_political_power = 100
+		}
+	}
+	}
+
+	focus = {
+		id = ERE_nat
+		icon = GFX_goal_generic_national_unity
+		x = 0
+		y = 1
+		cost = 5
+		relative_position_id = ERE_helpoth
+		available_if_capitulated = yes
+		prerequisite = { focus = ERE_helpoth }
+	available = {
+					has_government = communism
+			}
+		completion_reward = {
+		ERE = {
+			add_political_power = 100
+		set_rule = { can_create_factions = yes }
+	
+		}
+	}
+	}
+
+
+	focus = {
+		id = ERE_prop
+		icon = GFX_goal_generic_propaganda
+		prerequisite = { focus = ERE_bkd }
+		prerequisite = { focus = ERE_rkd }
+		x = 1
+		y = 1
+		relative_position_id = ERE_bkd
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = indoctrination_focus
+			add_political_power = 150
+		}
+	}
+focus = {
+		id = ERE_strikevans
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = ERE_prop }
+		prerequisite = { focus = ERE_nat }
+				prerequisite = { focus = ERE_young }
+		relative_position_id = ERE_nat
+		available = {
+			NOT = { is_in_faction_with = VAN }
+			NOT = { has_war_with = VAN }
+			YUG = { NOT = { is_puppet_of = VAN } }
+			country_exists = VAN
+		}
+		will_lead_to_war_with = VAN
+		x = 3
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = VAN
+				generator = { 448 } # belgrade
+			}
+		}
+
+	}
+
+focus = {
+		id = ERE_almostdone
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = ERE_strikevans }
+		available = {
+		}
+		x = 0
+		y = 1
+		relative_position_id = ERE_strikevans
+		cost = 10
+
+		available_if_capitulated = yes
+available = {
+				controls_state = 448
+			}
+		completion_reward = {
+			add_political_power = 500
+		}
+	}
+
+focus = {
+		id = ERE_strikevis
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		relative_position_id = ERE_almostdone
+		prerequisite = { focus = ERE_almostdone }
+		available = {
+			NOT = { is_in_faction_with = VIS }
+			NOT = { has_war_with = VIS }
+			VIS = { NOT = { is_puppet_of = VIS } }
+			country_exists = VIS
+		}
+		will_lead_to_war_with = VIS
+		x = 0
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = VIS
+				generator = { 175 } # belgrade
+			}
+		}
+
+	}
+
+	continuous_focus_position = { x = 60 y = 1500 }
+
+focus = {
+		id = ERE_stabil
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = ERE_don }
+		available = {
+		}
+		x = 2
+		y = 1
+		relative_position_id = ERE_don
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+focus = {
+		id = ERE_ally
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = ERE_stabil }
+
+		available = {
+			is_puppet = no
+			NOT = { has_war_with = GEP }
+		}
+		bypass = {
+			OR = {
+				AND = {
+					GEP = { has_war = yes }
+					NOT = { has_war_with = GEP }
+				}
+				AND = {
+					GEP = { is_subject = yes }
+					NOT = { GEP = { is_subject_of = ERE } }
+				}
+				GEP = { exists = no }
+			}
+		}
+		cancel_if_invalid = yes
+		x = -1
+		y = 1
+		relative_position_id = ERE_stabil
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		
+		completion_reward = {
+			diplomatic_relation = {
+				country = GEP
+				relation = guarantee
+				active = yes
+			}
+			GEP = {
+				add_ai_strategy = {
+					type = befriend
+					id = "GEP"			
+					value = 200
+				}
+				add_ai_strategy = {
+					type = alliance
+					id = "GEP"			
+					value = 200
+				}
+			}
+		}
+	}
+
+focus = {
+		id = ERE_GEPPP
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = ERE_stabil }
+
+		relative_position_id = ERE_stabil
+		available = {
+			NOT = { is_in_faction_with = FRK }
+			NOT = { has_war_with = FRK }
+			YUG = { NOT = { is_puppet_of = FRK } }
+			country_exists = FRK
+		}
+		will_lead_to_war_with = FRK
+		x = 1
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = FRK
+				generator = { 16 } # belgrade
+			}
+		}
+
+	}
+	focus = {
+		id = ERE_young
+		icon = GFX_goal_generic_more_territorial_claims
+		prerequisite = { focus = ERE_ally }
+		x = 0
+		y = 1
+		cost = 10
+
+		available_if_capitulated = yes
+		relative_position_id = ERE_ally
+		completion_reward = {
+			add_ideas = military_youth_focus
+			
+	}
+	}
+	focus = {
+		id = ERE_rome
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = ERE_GEPPP }
+
+		relative_position_id = ERE_GEPPP
+		available = {
+			NOT = { is_in_faction_with = OGK }
+			NOT = { has_war_with = OGK }
+			OGK = { NOT = { is_puppet_of = ERE } }
+			country_exists = OGK
+		}
+		will_lead_to_war_with = OGK
+		x = 0
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = OGK
+				generator = { 2 } # belgrade
+			}
+		}
+
+	}
+	focus = {
+		id = ERE_yay
+		icon = GFX_goal_generic_improve_relations
+		x = 0
+		y = 1
+		cost = 5
+		relative_position_id = ERE_nomore
+		prerequisite = { focus = ERE_nomore }
+
+		available_if_capitulated = yes
+ 
+		completion_reward = {
+		ERE = {
+			add_political_power = -100
+		}
+	}
+	}
+	focus = {
+		id = ERE_yayaa
+		icon = GFX_goal_generic_military_sphere
+		x = 0
+		y = 1
+		cost = 5
+		relative_position_id = ERE_yay
+		available_if_capitulated = yes
+		prerequisite = { focus = ERE_yay }
+		
+		completion_reward = {
+			add_political_power = 120
+		}
+	
+	}
+
+
+focus = {
+		id = ERE_Support
+		icon = GFX_focus_ger_reichskommisariats
+		x = -1
+		y = 1
+		cost = 5
+		relative_position_id = ERE_yayaa
+		available_if_capitulated = yes
+		prerequisite = { focus = ERE_yayaa }
+		
+		completion_reward = {
+			add_political_power = 120
+							add_popularity = {
+					ideology = fascism
+					popularity = 0.2
+				}
+		}
+	
+	}
+
+
+
+	focus = {
+		id = ERE_science
+		icon = GFX_focus_research
+		prerequisite = { focus = ERE_Support }
+		x = 0
+		y = 1
+		relative_position_id = ERE_Support
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+
+	focus = {
+		id = ERE_morepep
+		icon = GFX_goal_generic_more_territorial_claims
+		prerequisite = { focus = ERE_science }
+				prerequisite = { focus = ERE_protect }
+		x = 1
+		y = 1
+		relative_position_id = ERE_science
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = military_youth_focus
+			if = {
+				limit = { has_government = fascism }
+				add_popularity = {
+					ideology = fascism
+					popularity = 0.01
+				}
+			}
+			if = {
+				limit = { has_government = communism }
+				add_popularity = {
+					ideology = communism
+					popularity = 0.01
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ERE_doneit
+		icon = GFX_focus_ger_revive_kaiserreich
+		x = 1
+		y = 1
+		cost = 5
+		relative_position_id = ERE_yayaa
+		available_if_capitulated = yes
+		prerequisite = { focus = ERE_yayaa }
+		available = {
+					has_government = fascism
+			}
+		completion_reward = {
+			add_political_power = 120
+			set_rule = { can_create_factions = yes }
+		}
+	
+	}
+
+	focus = {
+		id = ERE_protect
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = ERE_doneit }
+		x = 0
+		y = 1
+		relative_position_id = ERE_doneit
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = deterrence
+						hidden_effect = { ERE = { color = color = { 125  53  24 } } }
+		}
+	}
+
+	focus = {
+		id = ERE_PREP
+		icon = GFX_focus_generic_strike_at_democracy2
+		x = 4
+		y = 1
+		cost = 5
+		relative_position_id = ERE_yayaa
+		available_if_capitulated = yes
+		prerequisite = { focus = ERE_yayaa }
+		available = {
+					has_government = fascism
+			}
+		completion_reward = {
+			add_political_power = 120
+		}
+	
+	}
+
+focus = {
+		id = ERE_killrkd
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = ERE_PREP }
+
+		relative_position_id = ERE_PREP
+		available = {
+			NOT = { is_in_faction_with = RKD }
+			NOT = { has_war_with = RKD }
+			YUG = { NOT = { is_puppet_of = RKD } }
+			country_exists = RKD
+		}
+		will_lead_to_war_with = RKD
+		x = 0
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = RKD
+				generator = { 449 } # belgrade
+			}
+		}
+
+	}
+		focus = {
+		id = ERE_killgep
+		icon = GFX_focus_generic_strike_at_democracy1
+		prerequisite = { focus = ERE_killrkd }
+
+		relative_position_id = ERE_killrkd
+		available = {
+			NOT = { is_in_faction_with = GEP }
+			NOT = { has_war_with = GEP }
+			YUG = { NOT = { is_puppet_of = GEP } }
+			country_exists = GEP
+		}
+		will_lead_to_war_with = GEP
+		x = 0
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = GEP
+				generator = { 45 } # belgrade
+			}
+		}
+
+	}	
+
+			focus = {
+		id = ERE_killOGK
+		icon = GFX_focus_generic_strike_at_democracy3
+		prerequisite = { focus = ERE_killgep }
+
+		relative_position_id = ERE_killgep
+		available = {
+			NOT = { is_in_faction_with = OGK }
+			NOT = { has_war_with = OGK }
+			YUG = { NOT = { is_puppet_of = OGK } }
+			country_exists = OGK
+		}
+		will_lead_to_war_with = OGK
+		x = -1
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = OGK
+				generator = { 2 } # belgrade
+			}
+		}
+
+	}
+		focus = {
+		id = ERE_PREPera
+		icon = GFX_focus_generic_little_entente
+		x = 1
+		y = 1
+		cost = 5
+		relative_position_id = ERE_morepep
+		available_if_capitulated = yes
+		prerequisite = { focus = ERE_morepep }
+		available = {
+					has_government = fascism
+			}
+		completion_reward = {
+			add_political_power = 120
+						add_state_claim = 2
+		}
+	
+	}
+	focus = {
+		id = ERE_doneatlast
+		icon = GFX_goal_generic_military_sphere
+		prerequisite = { focus = ERE_killOGK focus = ERE_PREPera}
+		x = -1
+		y = 1
+		relative_position_id = ERE_killOGK
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = paramilitarism_focus
+		}
+	}
+}
+}
+}
+
+}

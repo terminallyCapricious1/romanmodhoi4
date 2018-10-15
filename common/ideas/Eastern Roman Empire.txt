@@ -1,0 +1,21 @@
+ideas = {
+
+arab_influence = {
+			
+			allowed = {
+				always = yes
+			}
+
+			allowed_civil_war = {
+				has_government = arab
+			}
+
+			picture = generic_fascism_drift_bonus
+			
+			modifier = {
+				arab_drift = 0.1
+				arab_acceptance = 85
+			}
+		}
+		
+}

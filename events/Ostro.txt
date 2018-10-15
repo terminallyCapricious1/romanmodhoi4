@@ -1,0 +1,41 @@
+country_event = {
+	id = Romewar.1
+	title = Romewar.1.t
+	desc = Romewar.1.d
+	picture = GFX_report_event_spain_civil_war_soldiers
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = OGK
+		has_defensive_war = no
+	}
+
+	option = {
+		name = Romewar.1.b
+		hidden_effect = {
+			start_civil_war = {
+				ideology = fascism
+				size = 0.5
+			}
+			set_politics = {
+				ruling_party = communism
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = 0.5
+			}
+			add_popularity = {
+				ideology = fascism
+				popularity = -1
+			}	
+			random_other_country = {
+				limit = {
+					original_tag = OGK
+					has_government = fascism
+				}
+			}
+		}
+	}
+}

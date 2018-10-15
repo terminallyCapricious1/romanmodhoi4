@@ -1,0 +1,24 @@
+﻿###########################
+# Italian Events
+###########################
+
+add_namespace = italy
+
+# Albania Yields
+country_event = {
+	id = italy.1
+	title = italy.1.t
+	desc = italy.1.d
+	picture = GFX_report_event_royal_parade
+	
+	is_triggered_only = no
+	
+	trigger = {
+		tag = BEL
+		AND = {
+			date = 1936.1.1
+		}
+	}
+
+}
+

@@ -1,0 +1,22 @@
+﻿l_english:
+ 
+#####################
+OGK_fascism:0 "Ostrogothic Kingdom"
+OGK_democratic:0 "Roman Republic"
+OGK_communism:0 "Western Roman Empire"
+VAN_fascism:0 "Vandal Kingdom"
+GEP_fascism:0 "Gepid Kingdom States"
+BKD_fascism:0 "Burgundian Kingdom"
+GEP_democratic:0 "Gepid States"
+GEP_communism:0 "Northern Roman Proveninces"
+FRK_democratic:0 "Frankish States"
+VIS_fascism:0 "Kingdom of The Visigoths"
+VRB_neutrality:0 "Visigoth Rebels"
+FRB_neutrality:0 "Frankish Rebels"
+FRB_democratic:0 "Republic of Brittany"
+VIS_democratic:0 "Republic Of Iberia"
+ERE_communism:0 "Eastern Roman Empire"
+VIS_communism:0 "Roman Espana"
+ERE_democratic:0 "Eastern Roman Republic"
+ERE_fascism:0 "Ottoman Empire"
+RKD_neutrality:0 "Old Roman Africa"

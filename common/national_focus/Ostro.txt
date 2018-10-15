@@ -1,0 +1,1283 @@
+focus_tree = {
+	id = italianempire_focus
+
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 20
+			tag = OGK
+		}
+	}
+
+	focus = {
+		id = OGK_consolodate_power
+		icon = GFX_goal_generic_major_alliance
+		x = 5
+		y = 1
+		cost = 25
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		ITL = {
+			add_political_power = 100
+		}
+	}
+	}
+focus = {
+		id = OGK_reaffirm
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = OGK_consolodate_power }
+		mutually_exclusive = { focus = OGK_romanize }
+		mutually_exclusive = { focus = OGK_imperial }
+		x = 9
+		y = 3
+		cost = 10
+		completion_reward = {
+			OGK = {
+				add_ideas = fascist_influence
+			}
+			}
+		}
+
+		focus = {
+		id = OGK_romanize
+		icon = GFX_goal_support_fascism
+		prerequisite = { focus = OGK_consolodate_power }
+		mutually_exclusive = { focus = OGK_reaffirm }
+		mutually_exclusive = { focus = OGK_imperial }
+		x = 5
+		y = 3
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			OGK = {
+				add_ideas = communist_influence
+				country_event = { id = Romewar.1 }
+			}
+			}
+		}
+		focus = {
+		id = OGK_imperial
+		icon = GFX_goal_support_democracy
+		prerequisite = { focus = OGK_consolodate_power }
+		mutually_exclusive = { focus = OGK_reaffirm }
+		mutually_exclusive = { focus = OGK_romanize }
+		x = 1
+		y = 3
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			OGK = {
+				add_ideas = democratic_influence
+			}
+			}
+		}
+	# Fascist	
+		focus = {
+		id = OGK_abroad
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = OGK_reaffirm }
+		x = 8
+		y = 5
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {			
+			add_ideas = militarism_focus
+			army_experience = 20
+			set_rule = { can_send_volunteers = yes }
+		}
+	}
+		focus = {
+		id = OGK_young
+		icon = GFX_goal_generic_more_territorial_claims
+		prerequisite = { focus = OGK_reaffirm }
+		x = 10
+		y = 5
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = military_youth_focus
+			
+	}
+	}
+	
+		focus = {
+		id = OGK_GEP
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = OGK_reaffirm }
+		available = {
+			NOT = { is_in_faction_with = GEP }
+			NOT = { has_war_with = GEP }
+			YUG = { NOT = { is_puppet_of = GEP } }
+			country_exists = GEP
+		}
+		will_lead_to_war_with = GEP
+		x = 12
+		y = 4
+		cost = 20
+		ai_will_do = {
+			factor = 10
+		}	
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = GEP
+				generator = { 82 } # belgrade
+			}
+		}
+	}
+	focus = {
+		id = OGK_prop
+		icon = GFX_goal_generic_propaganda
+		prerequisite = { focus = OGK_abroad }
+		x = 1
+		y = 1
+		relative_position_id = OGK_abroad
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = indoctrination_focus
+			add_political_power = 150
+		}
+	}
+	focus = {
+		id = OGK_winone
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = OGK_GEP }
+		available = {
+		}
+		x = 0
+		y = 2
+		relative_position_id = OGK_GEP
+		cost = 10
+
+		available_if_capitulated = yes
+available = {
+				controls_state = 45
+			}
+		completion_reward = {
+			add_political_power = 200
+			set_rule = { can_create_factions = yes }
+		}
+	}
+	focus = {
+		id = OGK_BKD
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = OGK_winone }
+
+		relative_position_id = OGK_winone
+		available = {
+			NOT = { is_in_faction_with = BKD }
+			NOT = { has_war_with = BKD }
+			YUG = { NOT = { is_puppet_of = BKD } }
+			country_exists = BKD
+		}
+		will_lead_to_war_with = BKD
+		x = 2
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = BKD
+				generator = { 735 } # belgrade
+			}
+		}
+
+	}
+
+	focus = {
+		id = OGK_vann
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = OGK_winone }
+		relative_position_id = OGK_winone
+		available = {
+			is_puppet = no
+			NOT = { has_war_with = VAN }
+		}
+		bypass = {
+			
+				has_guaranteed = VAN
+				NOT = { country_exists = VAN }
+				AND = {
+					VAN = { has_war = yes }
+					NOT = { has_war_with = VAN }
+				}
+				AND = {
+					VAN = { is_subject = yes }
+					NOT = { VAN = { is_subject_of = OGK } }
+				}
+			}
+		cancel_if_invalid = yes
+		x = -2
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			if = {
+				limit = { country_exists = VAN }
+				VAN = {	
+					add_ideas = GER_safeguard_the_baltic
+					add_ai_strategy = {
+						type = befriend
+						id = "OGK"			
+						value = 20
+					}
+					add_ai_strategy = {
+						type = alliance
+						id = "OGK"			
+						value = 200
+					}
+
+}
+}
+}
+}
+# communist
+focus = {
+		id = OGK_restore
+		icon = GFX_goal_generic_propaganda
+		prerequisite = { focus = OGK_romanize
+	 }
+		x = 1
+		y = 1
+		relative_position_id = OGK_romanize
+		cost = 10
+available = {
+					has_government = communism
+			}
+		available_if_capitulated = yes
+		completion_reward = {
+			add_ideas = indoctrination_focus
+			add_political_power = 150
+				OGK = {
+				start_civil_war = {
+				ideology = fascism
+				size = 0.3
+			}
+			}
+		}
+	}
+	focus = {
+		id = OGK_helpoth
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = OGK_romanize }
+		x = -1
+		y = 1
+		relative_position_id = OGK_romanize
+		cost = 10
+
+		available_if_capitulated = yes
+available = {
+					has_government = communism
+			}
+		completion_reward = {
+			add_ideas = foreign_expeditions_focus
+
+		}
+	}
+focus = {
+		id = OGK_createfac
+		icon = GFX_goal_generic_dangerous_deal
+		prerequisite = { focus = OGK_helpoth }
+		x = 0
+		y = 1
+		relative_position_id = OGK_helpoth
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		set_rule = { can_create_factions = yes }
+		}
+	}
+focus = {
+		id = OGK_strikevans
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = OGK_restore }
+
+		relative_position_id = OGK_restore
+		available = {
+			NOT = { is_in_faction_with = VAN }
+			NOT = { has_war_with = VAN }
+			YUG = { NOT = { is_puppet_of = VAN } }
+			country_exists = VAN
+		}
+		will_lead_to_war_with = VAN
+		x = 0
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = VAN
+				generator = { 448 } # belgrade
+			}
+		}
+
+	}
+focus = {
+		id = OGK_almostdone
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = OGK_strikevans }
+		prerequisite = { focus = OGK_createfac }
+		available = {
+		}
+		x = 1
+		y = 1
+		relative_position_id = OGK_strikevans
+		cost = 10
+
+		available_if_capitulated = yes
+available = {
+				controls_state = 448
+			}
+		completion_reward = {
+			add_political_power = -500
+		}
+	}
+focus = {
+		id = OGK_diplomacy
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = OGK_strikevans }
+		relative_position_id = OGK_strikevans
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.25
+		}
+		completion_reward = {
+		FRK = {
+			add_opinion_modifier = { target = ITL modifier = ita_diplomacy_focus }
+				add_ideas = communist_influence
+		}
+}
+		available = {
+			country_exists = FRK
+			NOT = {
+				has_war_with = FRK
+			}
+		}
+		
+		}
+focus = {
+		id = OGK_fac
+		icon = GFX_goal_generic_military_deal
+		x = -2
+		y = 0
+		cost = 10
+		prerequisite = { focus = OGK_createfac }
+relative_position_id = OGK_diplomacy
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 120
+			create_faction = "OGK_roman_faction"
+			
+	}
+}
+focus = {
+		id = OGK_strikefra
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = OGK_almostdone }
+
+		relative_position_id = OGK_almostdone
+		available = {
+			NOT = { is_in_faction_with = FRK }
+			NOT = { has_war_with = FRK }
+			YUG = { NOT = { is_puppet_of = FRK } }
+			country_exists = FRK
+		}
+		will_lead_to_war_with = FRK
+		x = 1
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = FRK
+				generator = { 16 } # belgrade
+			}
+		}
+
+	}
+################## democratic
+
+focus = {
+		id = OGK_stabil
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = OGK_imperial }
+		available = {
+		}
+		x = 1
+		y = 1
+		relative_position_id = OGK_imperial
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+
+
+focus = {
+		id = OGK_protectoth
+		icon = GFX_goal_generic_allies_build_infantry
+		prerequisite = { focus = OGK_imperial }
+		x = -1
+		y = 1
+		relative_position_id = OGK_imperial
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = volunteer_corps_focus
+		}
+	}
+
+	focus = {
+		id = OGK_GEPally
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = OGK_protectoth }
+		available = {
+			is_puppet = no
+			NOT = { has_war_with = GEP }
+		}
+		bypass = {
+			OR = {
+				AND = {
+					GEP = { has_war = yes }
+					NOT = { has_war_with = GEP }
+				}
+				AND = {
+					GEP = { is_subject = yes }
+					NOT = { FIN = { is_subject_of = OGK } }
+				}
+				FIN = { exists = no }
+			}
+		}
+		cancel_if_invalid = yes
+		x = -1
+		y = 1
+		relative_position_id = OGK_protectoth
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		
+		completion_reward = {
+			diplomatic_relation = {
+				country = GEP
+				relation = guarantee
+				active = yes
+			}
+			FIN = {
+				add_ai_strategy = {
+					type = befriend
+					id = "GEP"			
+					value = 200
+				}
+				add_ai_strategy = {
+					type = alliance
+					id = "GEP"			
+					value = 200
+				}
+			}
+		}
+	}
+focus = {
+		id = OGK_spys
+		icon = GFX_focus_ger_assassinate_mussolini
+		prerequisite = { focus = OGK_imperial }
+		available = {
+		}
+		x = 1
+		y = 1
+		relative_position_id = OGK_imperial
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+focus = {
+		id = OGK_allybkd
+		icon = GFX_goal_generic_improve_relations
+		prerequisite = { focus = OGK_spys }
+		relative_position_id = OGK_spys
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.25
+		}
+		completion_reward = {
+		BKD = {
+			add_opinion_modifier = { target = BKD modifier = ita_diplomacy_focus }
+				add_ideas = democratic_influence
+		}
+}
+		available = {
+			country_exists = BKD
+			NOT = {
+				has_war_with = BKD
+			}
+		}
+		
+		}
+
+focus = {
+		id = OGK_spys
+		icon = GFX_focus_ger_assassinate_mussolini
+		prerequisite = { focus = OGK_imperial }
+		available = {
+		}
+		x = 1
+		y = 1
+		relative_position_id = OGK_imperial
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+
+
+
+
+
+focus = {
+		id = OGK_saveworld
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = OGK_allybkd }
+		prerequisite = { focus = OGK_GEPally }
+
+		relative_position_id = OGK_GEPally
+		available = {
+			NOT = { is_in_faction_with = VAN }
+			NOT = { has_war_with = VAN }
+			YUG = { NOT = { is_puppet_of = VAN } }
+			country_exists = VAN
+		}
+		will_lead_to_war_with = VAN
+		x = 2
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = VAN
+				generator = { 448 } # belgrade
+			}
+		}
+
+	}
+########################### resources
+	focus = {
+		id = OGK_rebuild
+		icon = GFX_goal_generic_defence
+		available = {
+		}
+		x = 18
+		y = 1
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+focus = {
+		id = OGK_build
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = OGK_rebuild }
+		x = 2
+		y = 1
+		relative_position_id = OGK_rebuild
+		cost = 10
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 2
+		}
+
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = construction_effort_tt
+				all_owned_state = {
+					free_building_slots = {
+						building = industrial_complex
+						size < 2
+						include_locked = yes
+					}
+				}
+			}
+		}
+
+		complete_tooltip = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = industrial_complex
+										size > 1
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+focus = {
+		id = OGK_industry
+		icon = GFX_goal_generic_production
+		x = -2
+		y = 1
+		cost = 10
+prerequisite = { focus = OGK_rebuild }
+		relative_position_id = OGK_rebuild
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 0.5
+				uses = 1
+				category = industry
+			}
+		}
+
+		ai_will_do = {
+			factor = 3
+				}				
+			}
+
+focus = {
+		id = OGK_guns
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = OGK_industry }
+		x = 1
+		y = 1
+		relative_position_id = OGK_industry
+		cost = 10
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 2			
+		}
+
+		complete_tooltip = {
+			add_extra_state_shared_building_slots = 1 
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = arms_factory
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+focus = {
+		id = OGK_roads
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = OGK_build }
+		x = -1
+		y = 1
+		relative_position_id = OGK_build
+		cost = 10
+
+		available_if_capitulated = yes
+
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = infrastructure_effort_tt
+				all_owned_state = {			
+					free_building_slots = {
+						building = infrastructure
+						size < 1
+					}
+				}
+			}
+		}
+
+		complete_tooltip = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 0
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = infrastructure
+										size > 0
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = infrastructure
+										size > 1
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+focus = {
+		id = OKG_bigguns
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = OGK_roads }
+		prerequisite = { focus = OGK_guns }
+		x = 1
+		y = 1
+		relative_position_id = OGK_guns
+		cost = 10
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 2
+		}
+
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = production_effort_tt
+				all_owned_state = {
+					free_building_slots = {
+						building = arms_factory
+						size < 1
+						include_locked = yes
+					}					
+				}
+			}
+		}
+
+		complete_tooltip = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}		
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = arms_factory
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+##################military
+focus = {
+		id = OGK_armyup
+		icon = GFX_focus_generic_military_mission
+		available = {
+		}
+		x = 18
+		y = 6
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+
+focus = {
+		id = OGK_waterguys
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		prerequisite = { focus = OGK_armyup }
+		
+		x = -1
+		y = 1
+		relative_position_id = OGK_armyup
+		cost = 10
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				all_owned_state = {
+					OR = {
+						is_coastal = no
+						dockyard < 1
+					}
+				}
+			}
+		}
+		}
+focus = {
+	id = OGK_cruze
+		icon = GFX_goal_generic_navy_cruiser
+		x = -1
+		y = 1
+		relative_position_id = OGK_waterguys
+		cost = 10
+prerequisite = { focus = OGK_waterguys }
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				all_owned_state = {
+					OR = {
+						is_coastal = no
+						dockyard < 1
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = cr_bonus
+				bonus = 0.5
+				ahead_reduction = 1
+				uses = 1
+				technology = improved_light_cruiser
+				technology = advanced_light_cruiser
+				technology = improved_heavy_cruiser
+				technology = advanced_heavy_cruiser
+			}
+		}
+	}
+
+
+
+
+focus = {
+		id = OGK_subsub
+		icon = GFX_focus_generic_support_the_left_right
+		prerequisite = { focus = OGK_cruze }
+		x = 0
+		y = 1
+		relative_position_id = OGK_cruze
+		cost = 10
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				all_owned_state = {
+					OR = {
+						is_coastal = no
+						dockyard < 1
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ss_bonus
+				bonus = 0.5
+				ahead_reduction = 1
+				uses = 1
+				technology = early_submarine
+				technology = basic_submarine
+				technology = improved_submarine
+				technology = advanced_submarine
+			}
+		}
+	}
+
+focus = {
+		id = OGK_betterguns
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = OGK_armyup }
+		x = 1
+		y = 1
+		relative_position_id = OGK_armyup
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_artillery_bonus
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+				category = artillery
+			}
+		}
+	}
+
+focus = {
+		id = OGK_vroom_vroom
+		icon = GFX_goal_generic_army_motorized
+		prerequisite = { focus = OGK_betterguns }
+		bypass = { has_tech = motorised_infantry }
+		x = 1
+		y = 1
+		relative_position_id = OGK_betterguns
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = motorized_bonus
+				bonus = 0.75
+				technology = motorised_infantry
+			}
+		}
+	}
+
+	focus = {
+		id = OGK_docdrain
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = OGK_vroom_vroom }
+		x = 0
+		y = 1
+		relative_position_id = OGK_vroom_vroom
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 5
+			add_tech_bonus = {
+				name = land_doc_bonus
+				bonus = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+
+focus = {
+		id = OGK_tanks
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = OGK_docdrain }
+		x = -1
+		y = 1
+		relative_position_id = OGK_docdrain
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = armor_bonus
+				bonus = 0.5
+				uses = 2
+				category = armor
+			}
+		}
+	}
+
+focus = {
+		id = OGK_flyfly
+		icon = GFX_goal_generic_build_airforce
+		x = 1
+		y = 1
+		cost = 10
+prerequisite = { focus = OGK_subsub }
+		relative_position_id = OGK_subsub
+
+		available_if_capitulated = yes
+
+
+		complete_tooltip = {
+			air_experience = 25
+			if = { limit = { has_country_flag = aviation_effort_AB }
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}			
+			add_tech_bonus = {
+				name = air_doc_bonus
+				bonus = 0.5
+				uses = 1
+				category = air_doctrine
+			}			
+		}
+
+		completion_reward = {
+			air_experience = 25
+
+			if = {
+				limit = {
+					capital_scope = {
+						NOT = {
+							free_building_slots = {
+								building = air_base
+								size > 1
+							}
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+					ROOT = { set_country_flag = aviation_effort_AB }
+				}
+			}
+			if = {
+				limit = {
+					capital_scope = {
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+				}
+				capital_scope = {
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+					ROOT = { set_country_flag = aviation_effort_AB }
+				}
+			}
+			add_tech_bonus = {
+				name = air_doc_bonus
+				bonus = 0.5
+				uses = 1
+				category = air_doctrine
+			}
+			add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 0.5
+				uses = 2
+				technology = early_fighter
+				technology = fighter1
+				technology = fighter2
+				technology = fighter3
+				technology = heavy_fighter1
+				technology = heavy_fighter2
+				technology = heavy_fighter3
+			}
+		}
+	} 
+
+	focus = {
+		id = OGK_rome
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = OGK_winone }
+
+		relative_position_id = OGK_winone
+		available = {
+			NOT = { is_in_faction_with = ERE }
+			NOT = { has_war_with = ERE }
+			OGK = { NOT = { is_puppet_of = ERE } }
+			country_exists = ERE
+		}
+		will_lead_to_war_with = ERE
+		x = 0
+		y = 1
+		cost = 20
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = ERE
+				generator = { 341 } # belgrade
+			}
+		}
+
+	}
+	
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+	
+	

@@ -1,0 +1,13 @@
+
+##########
+OGK = "countries/Ostrogothic Kingdom.txt"
+VAN = "countries/Vandal Kingdom.txt"
+GEP = "countries/Gepid Kingdom States.txt"
+BKD = "countries/Burgundian Kingdom.txt"
+NAT = "countries/Arab Tribes.txt"
+FRK = "countries/Frankish States.txt"
+VIS = "countries/Visigoths.txt"
+VRB = "countries/Visigoth Rebels.txt"
+FRB = "countries/Frankish Rebels.txt"
+ERE = "countries/Eastern Roman Empire.txt"
+RKD = "countries/Free Roman Africa.txt"

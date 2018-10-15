@@ -1,0 +1,7 @@
+﻿###########################
+# News Events
+###########################
+
+add_namespace = news
+
+# Marco Polo Bridge I
