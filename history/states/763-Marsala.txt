@@ -1,0 +1,14 @@
+state={
+	id=763
+	name="STATE_763"
+	provinces={
+		7059 
+	}
+	manpower=1281
+	state_category = town
+	history= {
+		owner = VAN
+		add_core_of = VAN
+		}
+	}
+}
